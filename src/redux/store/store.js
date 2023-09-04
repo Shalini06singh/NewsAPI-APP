@@ -1,0 +1,17 @@
+import createSagaMiddleware from "redux-saga";
+
+import { configureStore } from "@reduxjs/toolkit";
+import NewsReducer from "../reducer/news.reducer";
+import { news } from "../saga/news.saga";
+
+let sagaMiddleware = createSagaMiddleware();
+
+let store = configureStore({
+  reducer: NewsReducer,
+  middleware: [sagaMiddleware],
+  devTools: true,
+});
+
+sagaMiddleware.run(news);
+
+export default store;
